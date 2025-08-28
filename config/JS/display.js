@@ -22,7 +22,7 @@ function chamarTransicaoSenha(senha, setor) {
 
 
 function atualizarSenha() {
-  fetch("https://filafacil-api.onrender.com/display")
+  fetch("https://filafacil-cab-api.onrender.com/display")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Erro HTTP: ${response.status}`);
@@ -105,7 +105,7 @@ document.addEventListener("fullscreenchange", () => {
 
 async function atualizarVideo() {
     try {
-        const res = await fetch('https://filafacil-api.onrender.com/video'); // Troque para seu domínio online
+        const res = await fetch('https://filafacil-cab-api.onrender.com/video'); // Troque para seu domínio online
         const data = await res.json();
 
         if (data.url) {
