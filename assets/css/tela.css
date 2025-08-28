@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=PT+Mono&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #18166e;
+  border-bottom: 2px solid #fff;
+  height: 150px;
+}
+
+.logo a {
+  width: 450px;
+  display: flex;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
+  background-color: #18166e;
+  position: relative;
+  padding: 5px 5px;
+}
+
+.logo a img {
+  margin: 0px;
+  width: 425px;
+  height: 69px;
+}
+
+.logo-info {
+  position: fixed;
+  right: 30px;
+}
+
+#hora {
+  color: #fff;
+  font-family: "poppins", sans-serif;
+  font-size: 22px;
+}
+
+.site-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 200px; /* vídeo e senha dividem igualmente, rodapé fixo */
+  grid-template-columns: 1fr;
+  height: calc(100vh - 150px); /* tela menos o logo */
+}
+
+
+#video-container {
+  grid-column: 1;
+  grid-row: 1;
+  height: 100% /* define a altura do vídeo */
+}
+
+.senha-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* ocupa todo o espaço disponível */
+  justify-content: space-around;
+  background-color: #18166e;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.senha-container .senha-atual {
+  flex: 1; /* ocupa metade do espaço */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  color: #fff;
+  background-color: #3b77b3;
+  ;
+}
+
+.senha-container .ultimas-senhas {
+  flex: 1; /* ocupa a outra metade */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 1rem;
+  color: #fff;
+  background-color: #3b77b3;
+  overflow-y: auto; /* scroll se tiver muitas senhas */
+}
+
+.senha-container .senha-atual h1 {
+  margin-bottom: 15px;
+  font-size: 32px;
+}
+
+.senha-container .ultimas-senhas h4 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 54px;
+}
+
+#senha-atual {
+  font-size: 70px;
+  font-weight: bold;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+#tipo-setor {
+  font-size: 50px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.senha-item {
+  font-size: 40px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.text-bottom {
+  grid-row: 3;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  padding-left: 1.5rem;
+  background-color: #18166e;
+  border-top: 2px solid #ffffff;
+}
+
+.text-bottom h2 {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 2.5rem;
+  will-change: transform;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 2px;
+}
+#titulosenha {
+  font-size: 50px;
+  font-family: poppins, sans-serif;
+}
+/* BOTÃO FULLSCREEN */
+.fullscreen-btn {
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.logo .fullscreen-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 25px;
+}
+
+.fullscreen-btn:hover {
+  transform: scale(1.05);
+}
+
+.fullscreen-active .fullscreen-btn {
+  display: none;
+}
+
+/* rodape animaado */
+.marquee {
+  display: flex;
+  align-items: center;
+  background-color: #18166e;
+}
+
+.track {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll-left 40s linear infinite;
+  font-size: 4.5rem;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  letter-spacing: 2px;
+  will-change: transform;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+#transicaoSenha {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(30, 64, 175, 0.9); /* fundo azul translúcido */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  padding: 250px;
+  font-family: "PT Mono", monospace;
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Ativa a transição */
+#transicaoSenha.mostrar {
+  opacity: 1;
+}
