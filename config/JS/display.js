@@ -104,22 +104,52 @@ document.addEventListener("fullscreenchange", () => {
 });
 
 async function atualizarVideo() {
-    try {
-        const res = await fetch('https://filafacil-cab-api.onrender.com/video'); // Troque para seu domínio online
-        const data = await res.json();
+  try {
+    const res = await fetch('https://filafacil-cab-api.onrender.com/video');
+    const data = await res.json();
 
-        if (data.url) {
-            const iframe = document.getElementById('youtube-iframe');
+    if (data.url) {
+      const videoId = extrairVideoId(data.url);
 
-            // Só troca se for diferente do que já está
-            if (!iframe.src.includes(data.url)) {
-                iframe.src = data.url + "?autoplay=1&mute=1";
-            }
-        }
-    } catch (error) {
-        console.error("Erro ao carregar vídeo:", error);
+      // Só troca se for diferente
+      if (player && player.getVideoData().video_id !== videoId) {
+        player.loadVideoById(videoId);
+      }
     }
+  } catch (error) {
+    console.error("Erro ao carregar vídeo:", error);
+  }
 }
+
+function extrairVideoId(url) {
+  const regex = /(?:v=|\/)([0-9A-Za-z_-]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+}
+
+setInterval(atualizarVideo, 60000); // a cada 1 min
+
 
 document.addEventListener('DOMContentLoaded', atualizarVideo);
 setInterval(atualizarVideo, 10000); // Atualiza a cada 1 min
+
+
+let player;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("youtube-iframe", {
+    videoId: "5T-YfW4N6HI", // ID inicial do vídeo
+    playerVars: {
+      autoplay: 1,
+      mute: 1,
+      controls: 0,
+      modestbranding: 1,
+      rel: 0
+    },
+    events: {
+      onReady: (event) => {
+        event.target.playVideo();
+      }
+    }
+  });
+}
