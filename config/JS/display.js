@@ -82,8 +82,8 @@ atualizarHora();
 // Atualiza a cada segundo
 setInterval(atualizarHora, 1000);
 
-const fullscreenBtn = document.querySelector(".fullscreen-btn");
-const body = document.body;
+// const fullscreenBtn = document.querySelector(".fullscreen-btn");
+// const body = document.body;
 
 function toggleFullscreen() {
   if (!document.fullscreenElement) {
@@ -153,3 +153,15 @@ function onYouTubeIframeAPIReady() {
     }
   });
 }
+
+
+
+
+document.getElementById("fullscreen-btn").addEventListener("click", () => {
+  toggleFullscreen();
+
+  if (player) {
+    player.unMute();   // sempre desmuta quando entra em tela cheia
+  }
+});
+
